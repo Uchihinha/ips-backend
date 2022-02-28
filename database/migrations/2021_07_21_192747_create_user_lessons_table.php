@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLessonUserTable extends Migration
+class CreateUserLessonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateLessonUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('lesson_user', function (Blueprint $table) {
+        Schema::create('user_lessons', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
             $table->foreignId('lesson_id')->constrained();
             $table->boolean('watched')->default(false);
+
+            $table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ class CreateLessonUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lesson_user');
+        Schema::dropIfExists('user_lessons');
     }
 }

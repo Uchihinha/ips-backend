@@ -64,4 +64,19 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Lesson::class)->wherePivot('watched', true);
     }
+
+    public function userLessons()
+    {
+        return $this->hasMany(UserLesson::class);
+    }
+
+    public function userAchievements()
+    {
+        return $this->hasMany(UserAchievement::class);
+    }
+
+    public function getWatchedLessonsCountAttribute(): int
+    {
+        return $this->userLessons()->whereWatched(true)->count();
+    }
 }
