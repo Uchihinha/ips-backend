@@ -27,10 +27,7 @@ class LessonsWatchedAchievementService extends AchievementService
 
     public function isAlreadyWatched(User $user, Lesson $lesson): bool
     {
-        return $user->userLessons()
-            ->where('lesson_id', $lesson->id)
-            ->whereWatched(true)
-            ->exists();
+        return $user->watchedLessons()->where('id', $lesson->id)->exists();
     }
 
     protected function getAchievementMessage(int $watchedLessons): string
