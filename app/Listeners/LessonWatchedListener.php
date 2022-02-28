@@ -17,11 +17,10 @@ class LessonWatchedListener
     {
         $service = app(LessonsWatchedAchievementService::class);
 
-        if ($service->isAlreadyWatched($event->user, $event->lesson)) {
-            return;
+        if (! $service->isAlreadyWatched($event->user, $event->lesson)) {
+            $service->updateOrCreateWithWatchedTrue($event->user, $event->lesson);
         }
 
-        $service->createInstance($event->user, $event->lesson);
         $service->handle($event->user);
     }
 }

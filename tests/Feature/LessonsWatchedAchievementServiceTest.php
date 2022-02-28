@@ -57,12 +57,12 @@ class LessonsWatchedAchievementServiceTest extends TestCase
         $user = User::factory()->create();
         $lesson = Lesson::factory()->create();
 
-        $this->service->createInstance($user, $lesson);
+        $this->service->updateOrCreateWithWatchedTrue($user, $lesson);
         $this->service->handle($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
-            'achievement_key' => LessonsWatchedAchievementService::KEY,
+            'achievement_key' => $this->service->key,
             'achievement_message' => 'First Lesson Watched'
         ]);
     }
@@ -73,12 +73,12 @@ class LessonsWatchedAchievementServiceTest extends TestCase
 
         [$user, $lesson] = $this->generateUserLessons(4);
 
-        $this->service->createInstance($user, $lesson);
+        $this->service->updateOrCreateWithWatchedTrue($user, $lesson);
         $this->service->handle($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
-            'achievement_key' => LessonsWatchedAchievementService::KEY,
+            'achievement_key' => $this->service->key,
             'achievement_message' => '5 Lessons Watched'
         ]);
     }
@@ -89,12 +89,12 @@ class LessonsWatchedAchievementServiceTest extends TestCase
 
         [$user, $lesson] = $this->generateUserLessons(9);
 
-        $this->service->createInstance($user, $lesson);
+        $this->service->updateOrCreateWithWatchedTrue($user, $lesson);
         $this->service->handle($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
-            'achievement_key' => LessonsWatchedAchievementService::KEY,
+            'achievement_key' => $this->service->key,
             'achievement_message' => '10 Lessons Watched'
         ]);
     }
@@ -105,12 +105,12 @@ class LessonsWatchedAchievementServiceTest extends TestCase
 
         [$user, $lesson] = $this->generateUserLessons(24);
 
-        $this->service->createInstance($user, $lesson);
+        $this->service->updateOrCreateWithWatchedTrue($user, $lesson);
         $this->service->handle($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
-            'achievement_key' => LessonsWatchedAchievementService::KEY,
+            'achievement_key' => $this->service->key,
             'achievement_message' => '25 Lessons Watched'
         ]);
     }
@@ -121,12 +121,12 @@ class LessonsWatchedAchievementServiceTest extends TestCase
 
         [$user, $lesson] = $this->generateUserLessons(49);
 
-        $this->service->createInstance($user, $lesson);
+        $this->service->updateOrCreateWithWatchedTrue($user, $lesson);
         $this->service->handle($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
-            'achievement_key' => LessonsWatchedAchievementService::KEY,
+            'achievement_key' => $this->service->key,
             'achievement_message' => '50 Lessons Watched'
         ]);
     }

@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class LessonWatchedListenerTest extends TestCase
 {
-    public function testShouldNotCreateIfAlreadyExists(): void
+    public function testShouldCheckForAchievementIfAlreadyExists(): void
     {
         $userLesson = UserLesson::factory()->create([
             'watched' => true
@@ -19,7 +19,7 @@ class LessonWatchedListenerTest extends TestCase
         $event = new LessonWatched($userLesson->lesson, $userLesson->user);
         (new LessonWatchedListener())->handle($event);
 
-        $this->assertEmpty($userLesson->user->userAchievements);
+        $this->assertEquals(1, $userLesson->user->userAchievements->count());
     }
 
     public function testIsCorrectAttachedToEvent(): void
