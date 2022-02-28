@@ -41,33 +41,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * The comments that belong to the user.
-     */
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
 
-    /**
-     * The lessons that a user has access to.
-     */
-    public function lessons()
-    {
-        return $this->belongsToMany(Lesson::class);
-    }
-
-    /**
-     * The lessons that a user has watched.
-     */
-    public function watched()
-    {
-        return $this->belongsToMany(Lesson::class)->wherePivot('watched', true);
-    }
-
     public function userLessons()
     {
         return $this->hasMany(UserLesson::class);
+    }
+
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class, 'user_lessons', 'user_id', 'lesson_id');
+    }
+
+    public function watchedLessons()
+    {
+        return $this->lessons()->wherePivot('watched', true);
     }
 
     public function userAchievements()
@@ -77,6 +68,6 @@ class User extends Authenticatable
 
     public function getWatchedLessonsCountAttribute(): int
     {
-        return $this->userLessons()->whereWatched(true)->count();
+        return $this->watchedLessons()->count();
     }
 }
