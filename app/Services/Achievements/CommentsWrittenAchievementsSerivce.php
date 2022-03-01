@@ -25,6 +25,5 @@ class CommentsWrittenAchievementsSerivce extends AchievementService
     protected function getAmountToAchievement(User $user): int
     {
         return $user->comments->count();
-
     }
 }

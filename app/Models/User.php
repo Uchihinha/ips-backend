@@ -12,7 +12,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     public const AVAILABLE_ACHIEVEMENTS = [
         CommentsWrittenAchievementsSerivce::class,
@@ -124,7 +125,7 @@ class User extends Authenticatable
 
         foreach ($badges as $key => $badge) {
             if ($badge->id == $this->current_badge->id) {
-                return $badges[$key+1] ?? null;
+                return $badges[$key + 1] ?? null;
             }
         }
 

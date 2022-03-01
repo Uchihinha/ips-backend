@@ -69,7 +69,7 @@ abstract class AchievementService
         return null;
     }
 
-    protected abstract function getAchievementMessage(int $watchedLessons): string;
+    abstract protected function getAchievementMessage(int $watchedLessons): string;
 
-    protected abstract function getAmountToAchievement(User $user): int;
+    abstract protected function getAmountToAchievement(User $user): int;
 }

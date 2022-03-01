@@ -20,7 +20,7 @@ class LessonsWatchedAchievementService extends AchievementService
         UserLesson::updateOrCreate([
             'user_id' => $user->id,
             'lesson_id' => $lesson->id
-        ],[
+        ], [
             'watched' => true
         ]);
     }

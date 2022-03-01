@@ -46,7 +46,7 @@ class BadgeService
             }
 
             return $differenceFromCurrent < 0
-                ? $badges[$key-1]
+                ? $badges[$key - 1]
                 : $badge;
         }
 

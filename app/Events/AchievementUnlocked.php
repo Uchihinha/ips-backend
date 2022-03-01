@@ -9,7 +9,9 @@ use Illuminate\Queue\SerializesModels;
 
 class AchievementUnlocked
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public string $achievementName;
     public User $user;
