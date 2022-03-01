@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
 class AchievementsIndexResource extends JsonResource
 {
@@ -30,7 +31,7 @@ class AchievementsIndexResource extends JsonResource
         ];
     }
 
-    private function getUnlockedAchievements(): array
+    private function getUnlockedAchievements(): Collection
     {
         return $this->user->userAchievements
             ->unique('achievement_message')

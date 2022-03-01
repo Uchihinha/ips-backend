@@ -58,12 +58,12 @@ class UserTest extends TestCase
 
     public function testGetAmountToUnlockNextBadgeToAdvanced(): void
     {
-        $user = User::factory()
-            ->hasUserBadges(1, [
-                'badge_id' => Badge::whereName('Intermediate')->first()->id,
-                'current' => true
-            ])
-            ->create();
+        $user = User::factory()->create();
+        $user->deactiveBadges();
+        $user->userBadges()->create([
+            'badge_id' => Badge::whereName('Intermediate')->first()->id,
+            'current' => true
+        ]);
 
         UserAchievement::factory()->count(6)->create([
             'user_id' => $user->id
@@ -76,12 +76,12 @@ class UserTest extends TestCase
 
     public function testGetAmountToUnlockNextBadgeIfAlreadyHadMaster(): void
     {
-        $user = User::factory()
-            ->hasUserBadges(1, [
-                'badge_id' => Badge::whereName('Master')->first()->id,
-                'current' => true
-            ])
-            ->create();
+        $user = User::factory()->create();
+        $user->deactiveBadges();
+        $user->userBadges()->create([
+            'badge_id' => Badge::whereName('Master')->first()->id,
+            'current' => true
+        ]);
 
         UserAchievement::factory()->count(10)->create([
             'user_id' => $user->id

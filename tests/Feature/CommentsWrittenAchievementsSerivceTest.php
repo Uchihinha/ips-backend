@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class CommentsWrittenAchievementsSerivceTest extends TestCase
 {
-     private CommentsWrittenAchievementsSerivce $service;
+    private CommentsWrittenAchievementsSerivce $service;
 
     public function setUp(): void
     {

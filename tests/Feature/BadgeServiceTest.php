@@ -24,11 +24,7 @@ class BadgeServiceTest extends TestCase
 
     public function testUnlockBeginnerBadge(): void
     {
-        $this->expectsEvents(BadgeUnlocked::class);
-
         $user = User::factory()->create();
-
-        $this->assertNull($user->current_badge);
 
         $this->service->updateUserBadge($user);
         $user->refresh();
@@ -45,8 +41,6 @@ class BadgeServiceTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $this->assertNull($user->current_badge);
-
         $this->service->updateUserBadge($user);
         $user->refresh();
 
@@ -62,8 +56,6 @@ class BadgeServiceTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $this->assertNull($user->current_badge);
-
         $this->service->updateUserBadge($user);
         $user->refresh();
 
@@ -78,8 +70,6 @@ class BadgeServiceTest extends TestCase
         UserAchievement::factory()->count(10)->create([
             'user_id' => $user->id
         ]);
-
-        $this->assertNull($user->current_badge);
 
         $this->service->updateUserBadge($user);
         $user->refresh();
