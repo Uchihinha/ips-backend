@@ -70,6 +70,17 @@ It's just one route, but you can find the application docs [here](https://docume
 
 You can find the Laravel full docs [here](https://laravel.com/docs/8.x).
 
+## Code Quality Tools
+
+This project have `phpcs` and `pdpmd` installed for you can check the code quality. Just run the following:
+
+```
+phpmd <files> ansi .linters/phpmd.xml
+phpcs --standard=.linters/phpcs.xml <files>
+```
+
+Btw, you can find full docs for [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) and [phpmd](https://phpmd.org/).
+
 ## Testing
 
 The application works with default tests Laravel pattern (_tests/Feature_ and _tests/Unit_).
