@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Lesson;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             LessonSeeder::class,
             BadgeSeeder::class,
+            GeneralSeeder::class
         ]);
     }
 }
