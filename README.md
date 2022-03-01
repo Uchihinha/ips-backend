@@ -83,3 +83,35 @@ php artisan test
 Btw, it have a dedicated tests database, you can find the credentials on `.docker/mysql/docker-entrypoint-initdb.d/createdb.sql.example` if you want to run the tests on side database.
 
 For that you just need to create a `.env.testing` file and set the database credentials in it.
+
+### Coveraging
+
+With xDebug installed we can check the tests coveraging, just run the following:
+
+```
+vendor/bin/phpunit --whitelist app/ --coverage-html coverage/
+```
+
+it'll generate a full html coverage report located in the `coverage/` folder, so you can just open it in your browser.
+
+Some folders reports:
+
+#### Controllers
+
+![Controllers Full Report](./readme-images/controllers.png "Controllers Full Report")
+
+#### Events
+
+![Events Full Report](./readme-images/controllers.png "Events Full Report")
+
+#### Observers
+
+![Observers Full Report](./readme-images/controllers.png "Observers Full Report")
+
+#### Resources
+
+![Resources Full Report](./readme-images/controllers.png "Resources Full Report")
+
+#### Services
+
+![Services Full Report](./readme-images/controllers.png "Services Full Report")
