@@ -108,7 +108,8 @@ class CommentsWrittenAchievementsSerivceTest extends TestCase
             3 => '3 Comments Written',
             5 => '5 Comments Written',
             10 => '10 Comments Written',
-            20 => '20 Comments Written'
+            20 => '20 Comments Written',
+            21 => null
         ];
 
         foreach ($achievements as $key => $message) {

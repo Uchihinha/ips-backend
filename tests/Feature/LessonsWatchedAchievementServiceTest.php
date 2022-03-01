@@ -138,7 +138,8 @@ class LessonsWatchedAchievementServiceTest extends TestCase
             5 => '5 Lessons Watched',
             10 => '10 Lessons Watched',
             25 => '25 Lessons Watched',
-            50 => '50 Lessons Watched'
+            50 => '50 Lessons Watched',
+            51 => null
         ];
 
         foreach ($achievements as $key => $message) {
