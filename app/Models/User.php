@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Comment;
-use App\Services\Achievements\CommentsWrittenAchievementsSerivce;
+use App\Services\Achievements\CommentsWrittenAchievementsService;
 use App\Services\Achievements\LessonsWatchedAchievementService;
 use App\Services\Badges\BadgeService;
 use Illuminate\Notifications\Notifiable;
@@ -16,7 +16,7 @@ class User extends Authenticatable
     use Notifiable;
 
     public const AVAILABLE_ACHIEVEMENTS = [
-        CommentsWrittenAchievementsSerivce::class,
+        CommentsWrittenAchievementsService::class,
         LessonsWatchedAchievementService::class
     ];
 

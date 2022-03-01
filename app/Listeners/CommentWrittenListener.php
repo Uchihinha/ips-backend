@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\CommentWritten;
-use App\Services\Achievements\CommentsWrittenAchievementsSerivce;
+use App\Services\Achievements\CommentsWrittenAchievementsService;
 
 class CommentWrittenListener
 {
@@ -15,7 +15,7 @@ class CommentWrittenListener
      */
     public function handle(CommentWritten $event)
     {
-        $service = app(CommentsWrittenAchievementsSerivce::class);
+        $service = app(CommentsWrittenAchievementsService::class);
         $service->handle($event->comment->user);
     }
 }

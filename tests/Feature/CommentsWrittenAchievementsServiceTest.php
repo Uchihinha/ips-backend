@@ -5,17 +5,17 @@ namespace Tests\Feature;
 use App\Events\AchievementUnlocked;
 use App\Models\Comment;
 use App\Models\User;
-use App\Services\Achievements\CommentsWrittenAchievementsSerivce;
+use App\Services\Achievements\CommentsWrittenAchievementsService;
 use Tests\TestCase;
 
-class CommentsWrittenAchievementsSerivceTest extends TestCase
+class CommentsWrittenAchievementsServiceTest extends TestCase
 {
-    private CommentsWrittenAchievementsSerivce $service;
+    private CommentsWrittenAchievementsService $service;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->service = new CommentsWrittenAchievementsSerivce();
+        $this->service = new CommentsWrittenAchievementsService();
     }
 
     private function generateUserComments(int $amount): User

@@ -4,7 +4,7 @@ namespace App\Services\Achievements;
 
 use App\Models\User;
 
-class CommentsWrittenAchievementsSerivce extends AchievementService
+class CommentsWrittenAchievementsService extends AchievementService
 {
     public function __construct()
     {
