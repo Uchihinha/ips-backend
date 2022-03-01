@@ -4,9 +4,9 @@
 
 This application aims to simulate a achievement system. It was used PHP Laravel Framework (8.40) + MySQL + Docker.
 
-<!-- ## Live Demo
+## Live Demo
 
-You can get live demo in the following link: https://tbnb-api.herokuapp.com -->
+You can get live demo in the following link: https://ips-backend.herokuapp.com
 
 ## Installation
 
@@ -59,6 +59,12 @@ docker ps
 and get column "CONTAINER ID".
 
 Now the application is running on [http://localhost:8080](http://localhost:8080).
+
+## Application Docs
+
+It's just one route, but you can find the application docs [here](https://documenter.getpostman.com/view/17661641/UVksKYoU).
+
+> Try with user id 4
 
 ## Full Docs
 
