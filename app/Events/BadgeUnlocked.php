@@ -7,11 +7,11 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class AchievementUnlocked
+class BadgeUnlocked
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public string $achievementName;
+    public string $badgeName;
     public User $user;
 
     /**
@@ -19,9 +19,9 @@ class AchievementUnlocked
      *
      * @return void
      */
-    public function __construct(string $achievementName, User $user)
+    public function __construct(string $badgeName, User $user)
     {
-        $this->achievementName = $achievementName;
+        $this->badgeName = $badgeName;
         $this->user = $user;
     }
 }

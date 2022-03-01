@@ -13,4 +13,9 @@ class Badge extends Model
         'name',
         'required_achievements'
     ];
+
+    public function userBadges()
+    {
+        return $this->hasMany(UserBadge::class);
+    }
 }

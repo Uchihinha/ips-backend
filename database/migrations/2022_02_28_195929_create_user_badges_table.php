@@ -18,6 +18,7 @@ class CreateUserBadgesTable extends Migration
 
             $table->foreignId('user_id');
             $table->foreignId('badge_id');
+            $table->boolean('current')->default(false);
 
             $table->timestamps();
         });

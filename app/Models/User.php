@@ -66,8 +66,33 @@ class User extends Authenticatable
         return $this->hasMany(UserAchievement::class);
     }
 
+    public function userBadges()
+    {
+        return $this->hasMany(UserBadge::class);
+    }
+
+    public function badges()
+    {
+        return $this->belongsToMany(Badge::class, 'user_badges', 'user_id', 'badge_id');
+    }
+
     public function getWatchedLessonsCountAttribute(): int
     {
         return $this->watchedLessons()->count();
+    }
+
+    public function getCurrentBadgeAttribute(): ?Badge
+    {
+        return optional(
+            $this->userBadges()
+                ->where('current', true)
+                ->latest()
+                ->first()
+        )->badge;
+    }
+
+    public function deactiveBadges(): void
+    {
+        $this->userBadges()->where('current', true)->update(['current' => false]);
     }
 }

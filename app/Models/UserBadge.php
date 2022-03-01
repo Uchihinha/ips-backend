@@ -11,6 +11,12 @@ class UserBadge extends Model
 
     protected $fillable = [
         'user_id',
-        'badge_id'
+        'badge_id',
+        'current'
     ];
+
+    public function badge()
+    {
+        return $this->belongsTo(Badge::class);
+    }
 }
