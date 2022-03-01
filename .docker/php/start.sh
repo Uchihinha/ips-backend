@@ -13,8 +13,8 @@ php /var/www/app/artisan optimize:clear
 # Starts Queue
 nohup php /var/www/app/artisan queue:listen &
 
-# Run Migrations
-php /var/www/app/artisan migrate
+# Run Migrations and Seeders
+php /var/www/app/artisan migrate --seed
 
 # Starts NGINX!
 nginx
