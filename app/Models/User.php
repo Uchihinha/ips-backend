@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Models\Comment;
+use App\Services\Achievements\CommentsWrittenAchievementsSerivce;
+use App\Services\Achievements\LessonsWatchedAchievementService;
+use App\Services\Badges\BadgeService;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,6 +13,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    public const AVAILABLE_ACHIEVEMENTS = [
+        CommentsWrittenAchievementsSerivce::class,
+        LessonsWatchedAchievementService::class
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -94,5 +102,49 @@ class User extends Authenticatable
     public function deactiveBadges(): void
     {
         $this->userBadges()->where('current', true)->update(['current' => false]);
+    }
+
+    public function getNextAvailableAchievements(): array
+    {
+        $availableAchievements = [];
+
+        foreach (self::AVAILABLE_ACHIEVEMENTS as $achievementService) {
+            $instance = new $achievementService();
+
+            $availableAchievements[$instance->name] = $instance->getNextAvailable($this);
+        }
+
+        return $availableAchievements;
+    }
+
+    public function getNextAvailableBadge(): ?Badge
+    {
+        $badgeService = new BadgeService();
+        $badges = $badgeService->getAllBadges();
+
+        foreach ($badges as $key => $badge) {
+            if ($badge->id == $this->current_badge->id) {
+                return $badges[$key+1] ?? null;
+            }
+        }
+
+        return null;
+    }
+
+    public function getAmountToUnlockNextBadge(): ?int
+    {
+        $nextBadge = $this->getNextAvailableBadge();
+
+        if (! $nextBadge) {
+            return null;
+        }
+
+        $amount = $nextBadge->required_achievements - $this->userAchievements->count();
+
+        if ($amount < 0) {
+            return null;
+        }
+
+        return $amount;
     }
 }

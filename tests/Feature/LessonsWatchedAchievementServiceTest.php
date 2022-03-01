@@ -130,4 +130,20 @@ class LessonsWatchedAchievementServiceTest extends TestCase
             'achievement_message' => '50 Lessons Watched'
         ]);
     }
+
+    public function testGetNextAvailableAchievements(): void
+    {
+        $achievements = [
+            1 => 'First Lesson Watched',
+            5 => '5 Lessons Watched',
+            10 => '10 Lessons Watched',
+            25 => '25 Lessons Watched',
+            50 => '50 Lessons Watched'
+        ];
+
+        foreach ($achievements as $key => $message) {
+            [$user] = $this->generateUserLessons($key-1);
+            $this->assertEquals($message, $this->service->getNextAvailable($user));
+        }
+    }
 }

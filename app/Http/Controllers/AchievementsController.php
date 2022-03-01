@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AchievementsIndexResource;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class AchievementsController extends Controller
 {
-    public function index(User $user)
+    public function index(User $user): JsonResponse
     {
-        return response()->json([
-            'unlocked_achievements' => [],
-            'next_available_achievements' => [],
-            'current_badge' => '',
-            'next_badge' => '',
-            'remaing_to_unlock_next_badge' => 0
-        ]);
+        return response()->json(new AchievementsIndexResource($user));
     }
 }

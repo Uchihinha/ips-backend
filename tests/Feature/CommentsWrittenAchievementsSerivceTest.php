@@ -100,4 +100,20 @@ class CommentsWrittenAchievementsSerivceTest extends TestCase
             'achievement_message' => '20 Comments Written'
         ]);
     }
+
+    public function testGetNextAvailableAchievements(): void
+    {
+        $achievements = [
+            1 => 'First Comment Written',
+            3 => '3 Comments Written',
+            5 => '5 Comments Written',
+            10 => '10 Comments Written',
+            20 => '20 Comments Written'
+        ];
+
+        foreach ($achievements as $key => $message) {
+            $user = $this->generateUserComments($key-1);
+            $this->assertEquals($message, $this->service->getNextAvailable($user));
+        }
+    }
 }

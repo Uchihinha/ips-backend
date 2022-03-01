@@ -54,6 +54,21 @@ abstract class AchievementService
             ->first();
     }
 
+    public function getNextAvailable(User $user): ?string
+    {
+        $currentAchievementsCount = $this->getAmountToAchievement($user);
+
+        foreach ($this->rules as $rule) {
+            $differenceFromCurrent = $currentAchievementsCount - $rule;
+
+            if ($differenceFromCurrent < 0) {
+                return $this->getAchievementMessage($rule);
+            }
+        }
+
+        return null;
+    }
+
     protected abstract function getAchievementMessage(int $watchedLessons): string;
 
     protected abstract function getAmountToAchievement(User $user): int;
