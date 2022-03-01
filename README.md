@@ -102,16 +102,16 @@ Some folders reports:
 
 #### Events
 
-![Events Full Report](./readme-images/controllers.png "Events Full Report")
+![Events Full Report](./readme-images/events.png "Events Full Report")
 
 #### Observers
 
-![Observers Full Report](./readme-images/controllers.png "Observers Full Report")
+![Observers Full Report](./readme-images/observers.png "Observers Full Report")
 
 #### Resources
 
-![Resources Full Report](./readme-images/controllers.png "Resources Full Report")
+![Resources Full Report](./readme-images/resources.png "Resources Full Report")
 
 #### Services
 
-![Services Full Report](./readme-images/controllers.png "Services Full Report")
+![Services Full Report](./readme-images/services.png "Services Full Report")
