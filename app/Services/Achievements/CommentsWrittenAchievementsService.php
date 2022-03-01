@@ -9,7 +9,7 @@ class CommentsWrittenAchievementsService extends AchievementService
     public function __construct()
     {
         $this->name = 'Comments Written Achievements';
-        $this->rules = [1, 3, 5, 10, 20];
+        $this->amountRules = [1, 3, 5, 10, 20];
         $this->key = 'comments_written';
     }
 

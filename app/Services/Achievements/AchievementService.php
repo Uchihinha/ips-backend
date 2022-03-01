@@ -12,16 +12,16 @@ abstract class AchievementService
 
     public string $key;
 
-    protected array $rules;
+    protected array $amountRules;
 
-    public function handle(User $user): void
+    public function updateUserAchievement(User $user): void
     {
-        foreach ($this->rules as $key => $rule) {
+        foreach ($this->amountRules as $key => $amountRule) {
             if ($this->validateRule($key, $this->getAmountToAchievement($user))) {
-                $userAchievement = $this->getAchievementByUserAndRule($user, $rule);
+                $userAchievement = $this->getAchievementByUserAndRule($user, $amountRule);
 
                 if (! $userAchievement) {
-                    $this->createAchievement($user, $rule);
+                    $this->createAchievement($user, $amountRule);
                     event(new AchievementUnlocked($this->name, $user));
                 }
             }
@@ -30,27 +30,27 @@ abstract class AchievementService
 
     protected function validateRule(int $currentKey, int $userAmount): bool
     {
-        $rule = $this->rules[$currentKey];
-        $nextScore = $this->rules[$currentKey + 1] ?? null;
+        $amountRule = $this->amountRules[$currentKey];
+        $nextScore = $this->amountRules[$currentKey + 1] ?? null;
 
         return (! $nextScore || $userAmount < $nextScore)
-            && $userAmount >= $rule;
+            && $userAmount >= $amountRule;
     }
 
-    protected function createAchievement(User $user, int $rule): void
+    protected function createAchievement(User $user, int $amountRule): void
     {
         UserAchievement::create([
             'user_id' => $user->id,
             'achievement_key' => $this->key,
-            'achievement_message' => $this->getAchievementMessage($rule)
+            'achievement_message' => $this->getAchievementMessage($amountRule)
         ]);
     }
 
-    protected function getAchievementByUserAndRule(User $user, $rule): ?UserAchievement
+    protected function getAchievementByUserAndRule(User $user, $amountRule): ?UserAchievement
     {
         return UserAchievement::where('user_id', $user->id)
             ->where('achievement_key', $this->key)
-            ->where('achievement_message', $this->getAchievementMessage($rule))
+            ->where('achievement_message', $this->getAchievementMessage($amountRule))
             ->first();
     }
 
@@ -58,11 +58,11 @@ abstract class AchievementService
     {
         $currentAchievementsCount = $this->getAmountToAchievement($user);
 
-        foreach ($this->rules as $rule) {
-            $differenceFromCurrent = $currentAchievementsCount - $rule;
+        foreach ($this->amountRules as $amountRule) {
+            $differenceFromCurrent = $currentAchievementsCount - $amountRule;
 
             if ($differenceFromCurrent < 0) {
-                return $this->getAchievementMessage($rule);
+                return $this->getAchievementMessage($amountRule);
             }
         }
 

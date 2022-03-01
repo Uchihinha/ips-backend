@@ -11,7 +11,7 @@ class LessonsWatchedAchievementService extends AchievementService
     public function __construct()
     {
         $this->name = 'Lessons Watched Achievement';
-        $this->rules = [1, 5, 10, 25, 50];
+        $this->amountRules = [1, 5, 10, 25, 50];
         $this->key = 'lessons_watched';
     }
 

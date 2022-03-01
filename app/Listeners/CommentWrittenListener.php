@@ -16,6 +16,6 @@ class CommentWrittenListener
     public function handle(CommentWritten $event)
     {
         $service = app(CommentsWrittenAchievementsService::class);
-        $service->handle($event->comment->user);
+        $service->updateUserAchievement($event->comment->user);
     }
 }

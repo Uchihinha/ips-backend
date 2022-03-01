@@ -58,7 +58,7 @@ class LessonsWatchedAchievementServiceTest extends TestCase
         $lesson = Lesson::factory()->create();
 
         $this->service->updateOrCreateWithWatchedTrue($user, $lesson);
-        $this->service->handle($user);
+        $this->service->updateUserAchievement($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
@@ -74,7 +74,7 @@ class LessonsWatchedAchievementServiceTest extends TestCase
         [$user, $lesson] = $this->generateUserLessons(4);
 
         $this->service->updateOrCreateWithWatchedTrue($user, $lesson);
-        $this->service->handle($user);
+        $this->service->updateUserAchievement($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
@@ -90,7 +90,7 @@ class LessonsWatchedAchievementServiceTest extends TestCase
         [$user, $lesson] = $this->generateUserLessons(9);
 
         $this->service->updateOrCreateWithWatchedTrue($user, $lesson);
-        $this->service->handle($user);
+        $this->service->updateUserAchievement($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
@@ -106,7 +106,7 @@ class LessonsWatchedAchievementServiceTest extends TestCase
         [$user, $lesson] = $this->generateUserLessons(24);
 
         $this->service->updateOrCreateWithWatchedTrue($user, $lesson);
-        $this->service->handle($user);
+        $this->service->updateUserAchievement($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
@@ -122,7 +122,7 @@ class LessonsWatchedAchievementServiceTest extends TestCase
         [$user, $lesson] = $this->generateUserLessons(49);
 
         $this->service->updateOrCreateWithWatchedTrue($user, $lesson);
-        $this->service->handle($user);
+        $this->service->updateUserAchievement($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,

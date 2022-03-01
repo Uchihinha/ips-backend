@@ -21,6 +21,6 @@ class LessonWatchedListener
             $service->updateOrCreateWithWatchedTrue($event->user, $event->lesson);
         }
 
-        $service->handle($event->user);
+        $service->updateUserAchievement($event->user);
     }
 }

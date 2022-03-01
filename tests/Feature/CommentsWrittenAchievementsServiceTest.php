@@ -32,7 +32,7 @@ class CommentsWrittenAchievementsServiceTest extends TestCase
 
         $user = $this->generateUserComments(1);
 
-        $this->service->handle($user);
+        $this->service->updateUserAchievement($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
@@ -47,7 +47,7 @@ class CommentsWrittenAchievementsServiceTest extends TestCase
 
         $user = $this->generateUserComments(3);
 
-        $this->service->handle($user);
+        $this->service->updateUserAchievement($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
@@ -62,7 +62,7 @@ class CommentsWrittenAchievementsServiceTest extends TestCase
 
         $user = $this->generateUserComments(5);
 
-        $this->service->handle($user);
+        $this->service->updateUserAchievement($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
@@ -77,7 +77,7 @@ class CommentsWrittenAchievementsServiceTest extends TestCase
 
         $user = $this->generateUserComments(10);
 
-        $this->service->handle($user);
+        $this->service->updateUserAchievement($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
@@ -92,7 +92,7 @@ class CommentsWrittenAchievementsServiceTest extends TestCase
 
         $user = $this->generateUserComments(20);
 
-        $this->service->handle($user);
+        $this->service->updateUserAchievement($user);
 
         $this->assertDatabaseHas('user_achievements', [
             'user_id' => $user->id,
