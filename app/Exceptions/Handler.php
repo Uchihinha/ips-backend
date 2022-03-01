@@ -3,18 +3,12 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use ReflectionClass;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    /**
-     * A list of the exception types that are not reported.
-     *
-     * @var array
-     */
-    protected $dontReport = [
-        //
-    ];
+    protected $handlersPrefix = '\App\Exceptions\Handlers\\';
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
@@ -27,15 +21,17 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     *
-     * @return void
-     */
-    public function register()
+    public function render($request, Throwable $e)
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
+        /**
+         * You can add any custom handler you want in the folder \App\Exceptions\Handlers\
+         * It's just follow the name patter, the exception class name followed by 'Handler'.
+         * e.g: ModelNotFoundException -> ModelNotFoundExceptionHandler
+         */
+        $handlerName = $this->handlersPrefix . (new ReflectionClass($e))->getShortName() . 'Handler';
+
+        if (class_exists($handlerName)) return (new $handlerName())->response($e);
+
+        return parent::render($request, $e);
     }
 }
