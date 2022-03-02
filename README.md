@@ -6,7 +6,7 @@ This application aims to simulate a achievement system. It was used PHP Laravel 
 
 ## Live Demo
 
-You can get live demo in the following link: https://ips-backend.herokuapp.com
+You can get live demo in the following link: https://ips-backend.herokuapp.com/users/4/achievements
 
 ## Installation
 
