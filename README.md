@@ -4,10 +4,6 @@
 
 This application aims to simulate a achievement system. It was used PHP Laravel Framework (8.40) + MySQL + Docker.
 
-## Live Demo
-
-You can get live demo in the following link: https://ips-backend.herokuapp.com/users/4/achievements
-
 ## Installation
 
 You must have Docker installed in your environment, all the docker config is inside `.docker` folder.
